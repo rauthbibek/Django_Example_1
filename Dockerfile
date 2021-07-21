@@ -1,14 +1,16 @@
-FROM python:3.8
+FROM python:3.8-alpine
 
 ENV PYTHONUNBUFFEREED 1
 
 WORKDIR /app
 ADD . /app
 
-COPY ./requirements.tx /app/requirements.txt
+COPY ./requirements.txt /app/requirements.txt
 
 RUN pip install -r requirements.txt
 
 COPY . /app
+
+EXPOSE 9210
 
 CMD ["python", "manage.py", "runserver", "0:9210" ]
